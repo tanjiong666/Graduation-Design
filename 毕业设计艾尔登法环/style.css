@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .content-auto {
+        content-visibility: auto;
+    }
+    .section-full {
+        height: 100vh;
+        min-height: 600px;
+    }
+    .nav-item-active {
+        @apply border-l-4 border-elden-gold bg-elden-gray/50;
+    }
+    .text-shadow {
+        text-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
+    }
+    .bg-blur {
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+}
+
+@layer base {
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    elden: {
+                        gold: '#D4AF37',
+                        dark: '#1A1A1A',
+                        gray: '#333333',
+                        red: '#8B0000'
+                    },
+                },
+                fontFamily: {
+                    elden: ['Cinzel', 'serif'],
+                },
+            }
+        }
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+#start-page button:hover {
+    transform: translateY(-2px);
+}
+
+#start-page button:active {
+    transform: translateY(0);
+}
+
+.nav-item {
+    transition: all 0.3s ease;
+}
