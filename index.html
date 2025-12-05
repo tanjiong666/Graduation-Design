@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>艾尔登法环 - 交界地指南</title>
+    <!-- 外部资源 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <!-- 本地资源 -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-elden-dark text-white overflow-hidden font-elden">
+    <!-- 启动页 -->
+    <div id="start-page" class="fixed inset-0 z-30 flex flex-col items-center justify-center">
+        <div class="absolute inset-0 w-full h-full bg-elden-dark">
+            <img src="images/background1.jpg" class="w-full h-full object-cover opacity-70" alt="艾尔登法环启动背景">
+            <div class="absolute inset-0 bg-black/30"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/20 to-black/60"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-elden-dark/90 to-transparent"></div>
+        </div>
+        <div class="relative z-10 text-center w-full h-full flex flex-col items-center justify-center">
+            <h1 class="text-[clamp(3rem,10vw,6rem)] font-black text-elden-gold text-shadow mb-4" style="text-shadow: 0 0 15px rgba(201,176,103,0.8);">
+                <img src="images/ELRENRING.webp" class="animate-slide-up">
+            </h1>
+            <button id="enter-btn" class="px-10 py-4 bg-elden-gold/20 border-2 border-elden-gold text-elden-gold rounded-sm hover:bg-elden-gold/40 transition-all duration-300 text-lg shadow-[0_0_10px_2px_rgba(201,176,103,0.7)] hover:shadow-[0_0_15px_4px_rgba(201,176,103,0.9)]">
+                踏入交界地
+            </button>
+        </div>
+    </div>
+
+    <!-- 主内容容器 -->
+    <div id="main-content" class="fixed inset-0 z-20 opacity-0 pointer-events-none">
+        <div class="absolute inset-0 bg-black/30"></div>
+        
+        <!-- 右侧导航栏 -->
+        <nav class="fixed right-0 top-0 h-full w-20 md:w-24 bg-elden-dark/80 bg-blur flex flex-col items-center justify-center z-30">
+            <ul class="space-y-8">
+                <li class="nav-item cursor-pointer w-full text-center py-3 nav-item-active" data-section="1">
+                    <i class="fa fa-home text-xl"></i>
+                </li>
+                <li class="nav-item cursor-pointer w-full text-center py-3" data-section="2">
+                    <i class="fa fa-map-signs text-xl"></i>
+                </li>
+                <li class="nav-item cursor-pointer w-full text-center py-3" data-section="3">
+                    <i class="fa fa-shield text-xl"></i>
+                </li>
+                <li class="nav-item cursor-pointer w-full text-center py-3" data-section="4">
+                    <i class="fa fa-book text-xl"></i>
+                </li>
+                <li class="nav-item cursor-pointer w-full text-center py-3" data-section="5">
+                    <i class="fa fa-users text-xl"></i>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- 内容区域 -->
+        <div id="content-wrapper" class="h-full ml-0 mr-20 md:mr-24 overflow-hidden">
+            <!-- 板块1：首页（匹配目标截图） -->
+            <section class="section-full relative flex flex-col items-center justify-center" data-section-id="1">
+                <div class="relative z-10 w-full max-w-5xl text-center mt-12">
+                    <!-- 上方金边 -->
+                    <img src="images/花边.jpg" alt="金边装饰" class="w-full h-auto mb-2">
+                    <!-- 标题文字 -->
+                    <h1 class="text-[clamp(1.5rem,4vw,2.5rem)] font-black text-elden-gold text-shadow">
+                        概念
+                    </h1>
+                      <img src="images/花边.jpg" alt="金边装饰" class="w-full h-auto mb-2">
+                </div>
+                <!-- 轮播主容器（图片偏下） -->
+                <div class="w-full max-w-5xl relative z-10 mt-auto mb-16">
+                    <!-- 左侧箭头（图片中间） -->
+                    <button class="carousel-prev absolute left-4 top-1/2 -translate-y-1/2 z-30" onclick="carouselPrev()">
+                        <img src="images/left.jpg" alt="上一页" class="w-8 h-8">
+                    </button>
+
+                    <!-- 右侧箭头（图片中间） -->
+                    <button class="carousel-next absolute right-4 top-1/2 -translate-y-1/2 z-30" onclick="carouselNext()">
+                        <img src="images/right.jpg" alt="下一页" class="w-8 h-8">
+                    </button>
+
+                    <!-- 轮播内容区 -->
+                    <div class="carousel-container w-full overflow-hidden">
+                        <div class="carousel-slides flex transition-transform duration-500" style="transform: translateX(0);">
+                            <!-- 轮播项1 -->
+                            <div class="carousel-slide w-full flex-shrink-0">
+                                <div class="w-full text-center">
+                                    <img src="images/1.jpg" alt="充满刺激的广阔世界" class="w-full max-w-3xl mx-auto rounded-lg border border-elden-gold/30">
+                                    <p class="txtlead text-elden-gold text-2xl mt-6 mb-2">充满刺激的广阔世界</p>
+                                    <p class="txtdetail content-text text-lg max-w-2xl mx-auto">
+                                        拥有各种场景的开放式地图，以及复杂且立体的巨大地下迷宫<br>
+                                        无缝衔接的广阔世界。探索的前方有着未知发现带来的欢喜与能带来高度达成感的巨大威胁等着玩家们。
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- 轮播项2 -->
+                            <div class="carousel-slide w-full flex-shrink-0">
+                                <div class="w-full text-center">
+                                    <img src="images/2.jpg" alt="高度自由的探索" class="w-full max-w-3xl mx-auto rounded-lg border border-elden-gold/30">
+                                    <p class="txtlead text-elden-gold text-2xl mt-6 mb-2">高度自由的探索</p>
+                                    <p class="txtdetail content-text text-lg max-w-2xl mx-auto">
+                                        采用了长于机动力，可在险峻山崖驰骋的灵马，以及能拓宽攻略范围的跳跃动作。<br>
+                                        可以自由且愉快地享受宽阔的场景和复杂的地下迷宫探索。
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- 轮播项3 -->
+                            <div class="carousel-slide w-full flex-shrink-0">
+                                <div class="w-full text-center">
+                                    <img src="images/3.jpg" alt="仅属自己的角色" class="w-full max-w-3xl mx-auto rounded-lg border border-elden-gold/30">
+                                    <p class="txtlead text-elden-gold text-2xl mt-6 mb-2">仅属自己的角色</p>
+                                    <p class="txtdetail content-text text-lg max-w-2xl mx-auto">
+                                        玩家角色可以自定义外表，并自由组合身着的武器、防具、魔法。<br>
+                                        要成为高力量的顽强战士，抑或是穷究魔法，可以根据自己的游玩风格让角色成长。
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- 轮播项4 -->
+                            <div class="carousel-slide w-full flex-shrink-0">
+                                <div class="w-full text-center">
+                                    <img src="images/4.jpg" alt="战略性的战斗" class="w-full max-w-3xl mx-auto rounded-lg border border-elden-gold/30">
+                                    <p class="txtlead text-elden-gold text-2xl mt-6 mb-2">战略性的战斗</p>
+                                    <p class="txtdetail content-text text-lg max-w-2xl mx-auto">
+                                        不仅有剑戟相接的近身战斗，也有利用魔法或弓进行的远距离攻击，<br>
+                                        还有藏身暗处斩杀敌人的潜行或召唤灵魂进行的协同战斗，<br>
+                                        本作准备了丰富的战略以克服种种威胁。
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- 轮播项5 -->
+                            <div class="carousel-slide w-full flex-shrink-0">
+                                <div class="w-full text-center">
+                                    <img src="images/5.jpg" alt="由神话衍生而来的群像剧" class="w-full max-w-3xl mx-auto rounded-lg border border-elden-gold/30">
+                                    <p class="txtlead text-elden-gold text-2xl mt-6 mb-2">由神话衍生而来的群像剧</p>
+                                    <p class="txtdetail content-text text-lg max-w-2xl mx-auto">
+                                        片段式阐述的多层剧情。<br>
+                                        将展现出登场人物各种思虑交错的群像剧。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 板块2：交界地地图（修改后：网格布局+悬停高亮） -->
+            <section class="section-full flex items-center justify-center relative px-8 bg-elden-dark/90 overflow-hidden" data-section-id="2">
+                <!-- 背景纹理 -->
+                <div class="absolute inset-0 z-0">
+                    <img src="images/map-bg.jpg" alt="交界地地图纹理" class="w-full h-full object-cover opacity-20">
+                    <div class="absolute inset-0 bg-gradient-to-b from-elden-dark/80 to-elden-dark/95"></div>
+                </div>
+
+                <!-- 内容容器 -->
+                <div class="max-w-7xl w-full z-10 py-6">
+                    <!-- 标题 -->
+                    <div class="text-center mb-6">
+                        <h2 class="text-[clamp(1.8rem,4vw,3rem)] font-black text-elden-gold text-shadow mb-2">
+                            交界地 · 破碎的王国
+                        </h2>
+                        <p class="content-text text-base max-w-3xl mx-auto">
+                            从平原到天空，遍历交界地每一寸土地，解锁黄金树的秘密
+                        </p>
+                    </div>
+
+                    <!-- 分类切换按钮 -->
+                    <div class="flex justify-center items-center gap-3 mb-8 overflow-x-auto pb-2 scrollbar-hide">
+                        <button class="map-tab-btn active shrink-0" data-category="plain">
+                            <i class="fa fa-meadow mr-2"></i>地上
+                        </button>
+                        <button class="map-tab-btn shrink-0" data-category="highland">
+                            <i class="fa fa-mound mr-2"></i>高地
+                        </button>
+                        <button class="map-tab-btn shrink-0" data-category="volcano">
+                            <i class="fa fa-fire-flame-curved mr-2"></i>火山/雪山
+                        </button>
+                        <button class="map-tab-btn shrink-0" data-category="castle">
+                            <i class="fa fa-fort-awesome mr-2"></i>王城/圣树
+                        </button>
+                        <button class="map-tab-btn shrink-0" data-category="underground">
+                            <i class="fa fa-dungeon mr-2"></i>地下
+                        </button>
+                        <button class="map-tab-btn shrink-0" data-category="sky">
+                            <i class="fa fa-cloud mr-2"></i>天空
+                        </button>
+                    </div>
+
+                    <!-- 卡片网格容器（移除轮播，改为网格） -->
+                    <div class="map-card-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+                        <!-- 【地上分类】 -->
+                        <div class="map-card plain active-category" data-category="plain">
+                            <div class="map-card-inner h-full">
+                                <div class="map-img-wrapper">
+                                    <img src="images/宁姆格福.jpg" alt="宁姆格福" class="w-full h-full object-cover">
+                                    <div class="map-text-overlay">
+                                        <h3 class="text-2xl font-bold text-elden-gold mb-3">宁姆格福</h3>
+                                        <div class="text-sm space-y-1 content-text">
+                                            <p>褪色者初入交界地的试炼场，风暴山丘与史东薇尔城在此</p>
+                                            <p><strong>推荐等级：</strong>1-20级</p>
+                                            <p><strong>核心地标：</strong>风暴山丘的破屋、史东薇尔城</p>
+                                            <p><strong>标志性BOSS：</strong>大树守卫、接肢葛瑞克</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="map-card-name text-center py-3 text-elden-gold font-bold">宁姆格福</div>
+                            </div>
+                        </div>
+                        <div class="map-card plain active-category" data-category="plain">
+                            <div class="map-card-inner h-full">
+                                <div class="map-img-wrapper">
+                                    <img src="images/摩恩城.jpg" alt="啜泣半岛" class="w-full h-full object-cover">
+                                    <div class="map-text-overlay">
+                                        <h3 class="text-2xl font-bold text-elden-gold mb-3">啜泣半岛</h3>
+                                        <div class="text-sm space-y-1 content-text">
+                                            <p>宁姆格福南部的半岛，充斥着流放者与亡灵</p>
+                                            <p><strong>推荐等级：</strong>15-30级</p>
+                                            <p><strong>核心地标：</strong>摩恩城、啜泣半岛的教堂</p>
+                                            <p><strong>标志性BOSS：</strong>流放者骑士、“熔岩土龙”马卡尔</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="map-card-name text-center py-3 text-elden-gold font-bold">啜泣半岛</div>
+                            </div>
+                        </div>
+                        <div class="map-card plain active-category" data-category="plain">
+                            <div class="map-card-inner h-full">
+                                <div class="map-img-wrapper">
+                                    <img src="images/利耶尼亚.jpg" alt="利耶尼亚" class="w-full h-full object-cover">
+                                    <div class="map-text-overlay">
+                                        <h3 class="text-2xl font-bold text-elden-gold mb-3">利耶尼亚</h3>
+                                        <div class="text-sm space-y-1 content-text">
+                                            <p>卡利亚书斋，结缘教堂坐落于此</p>
+                                            <p><strong>推荐等级：</strong>20-40级</p>
+                                            <p><strong>核心地标：</strong>卡利亚书斋、结缘教堂</p>
+                                            <p><strong>标志性BOSS：</strong>死之鸟、虾薪王</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="map-card-name text-center py-3 text-elden-gold font-bold">利耶尼亚</div>
+                            </div>
+                        </div>
+
+                        <!-- 【高地分类】 -->
+                           <div class="map-card highland" data-category="highland">
+                            <div class="map-card-inner h-full">
+                                <div class="map-img-wrapper">
+                                    <img src="images/魔法学院.jpg" alt="魔法学院" class="w-full h-full object-cover">
+                                    <div class="map-text-overlay">
+                                        <h3 class="text-2xl font-bold text-elden-gold mb-3">魔法学院</h3>
+                                        <div class="text-sm space-y-1 content-text">
+                                            <p>辉石魔法的摇篮，雷亚卢卡利亚魔法学院坐落于此</p>
+                                            <p><strong>推荐等级：</strong>20-40级</p>
+                                            <p><strong>核心地标：</strong>雷亚卢卡利亚魔法学院</p>
+                                            <p><strong>标志性BOSS：</strong>满月女王蕾娜菈</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="map-card-name text-center py-3 text-elden-gold font-bold">魔法学院</div>
+                            </div>
+                        </div>
+                        <div class="map-card highland" data-category="highland">
+                            <div class="map-card-inner h-full">
+                                <div class="map-img-wrapper">
+                                    <img src="images/盖利德.jpg" alt="盖利德" class="w-full h-full object-cover">
+                                    <div class="map-text-overlay">
+                                        <h3 class="text-2xl font-bold text-elden-gold mb-3">盖利德</h3>
+                                        <div class="text-sm space-y-1 content-text">
+                                            <p>被猩红腐败侵蚀的荒芜之地，碎星拉塔恩的领地</p>
+                                            <p><strong>推荐等级：</strong>40-60级</p>
+                                            <p><strong>核心地标：</strong>红狮子城、盖利德神授塔</p>
+                                            <p><strong>标志性BOSS：</strong>碎星将军拉塔恩、老将尼奥</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="map-card-name text-center py-3 text-elden-gold font-bold">盖利德</div>
+                            </div>
+                        </div>
+                        <div class="map-card highland" data-category="highland">
+                            <div class="map-card-inner h-full">
+                                <div class="map-img-wrapper">
+                                    <img src="images/亚坛高原.jpg" alt="亚坛高原" class="w-full h-full object-cover">
+                                    <div class="map-text-overlay">
+                                        <h3 class="text-2xl font-bold text-elden-gold mb-3">亚坛高原</h3>
+                                        <div class="text-sm space-y-1 content-text">
+                                            <p>王城南部的高原，连接火山与王城，黄金树恩惠衰减</p>
+                                            <p><strong>推荐等级：</strong>50-70级</p>
+                                            <p><strong>核心地标：</strong>亚坛大道的三叉口、风车村</p>
+                                            <p><strong>标志性BOSS：</strong>“熔岩土龙”马卡尔、风车村的癫火信徒</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="map-card-name text-center py-3 text-elden-gold font-bold">亚坛高原</div>
+                            </div>
+                        </div>
+                     
+                        <!-- 【火山/雪山分类】 -->
+                        <div class="map-card volcano" data-category="volcano">
+                            <div class="map-card-inner h-full">
+                                <div class="map-img-wrapper">
+                                    <img src="images/火山.jpg" alt="格密尔火山" class="w-full h-full object-cover">
+                                    <div class="map-text-overlay">
+                                        <h3 class="text-2xl font-bold text-elden-gold mb-3">格密尔火山</h3>
+                                        <div class="text-sm space-y-1 content-text">
+                                            <p>叛律者拉卡德的居所，岩浆遍布的凶险区域</p>
+                                            <p><strong>推荐等级：</strong>60-80级</p>
+                                            <p><strong>核心地标：</strong>火山官邸、噬神之蛇的神殿</p>
+                                            <p><strong>标志性BOSS：</strong>亵渎君王拉卡德、熔岩土龙</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="map-card-name text-center py-3 text-elden-gold font-bold">格密尔火山</div>
+                            </div>
+                        </div>
+                        <div class="map-card volcano" data-category="volcano">
+                            <div class="map-card-inner h-full">
+                                <div class="map-img-wrapper">
+                                    <img src="images/雪山.jpg" alt="巨人山顶" class="w-full h-full object-cover">
+                                    <div class="map-text-overlay">
+                                        <h3 class="text-2xl font-bold text-elden-gold mb-3">巨人山顶</h3>
+                                        <div class="text-sm space-y-1 content-text">
+                                            <p>终年积雪的极寒之地，火焰大锅在此燃烧</p>
+                                            <p><strong>推荐等级：</strong>80-100级</p>
+                                            <p><strong>核心地标：</strong>火焰大锅、巨人战争英雄的墓地</p>
+                                            <p><strong>标志性BOSS：</strong>火焰巨人、“老将”盖乌斯</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="map-card-name text-center py-3 text-elden-gold font-bold">巨人山顶</div>
+                            </div>
+                        </div>
+                        <div class="map-card volcano" data-category="volcano">
+                            <div class="map-card-inner h-full">
+                                <div class="map-img-wrapper">
+                                    <img src="images/化圣雪原.jpg" alt="化圣雪原" class="w-full h-full object-cover">
+                                    <div class="map-text-overlay">
+                                        <h3 class="text-2xl font-bold text-elden-gold mb-3">化圣雪原</h3>
+                                        <div class="text-sm space-y-1 content-text">
+                                            <p>巨人山顶的隐秘雪原，通往圣树的必经之路</p>
+                                            <p><strong>推荐等级：</strong>90-110级</p>
+                                            <p><strong>核心地标：</strong>仪典镇奥缇娜、圣树入口</p>
+                                            <p><strong>标志性BOSS：</strong>“老将”盖乌斯、圣树骑士</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="map-card-name text-center py-3 text-elden-gold font-bold">化圣雪原</div>
+                            </div>
+                        </div>
+
+                        <!-- 【王城/圣树分类】 -->
+                        <div class="map-card castle" data-category="castle">
+                            <div class="map-card-inner h-full">
+                                <div class="map-img-wrapper">
+                                    <img src="images/王城.jpg" alt="王城罗德尔" class="w-full h-full object-cover">
+                                    <div class="map-text-overlay">
+                                        <h3 class="text-2xl font-bold text-elden-gold mb-3">王城罗德尔</h3>
+                                        <div class="text-sm space-y-1 content-text">
+                                            <p>黄金树脚下的永恒之城，艾尔登法环的核心</p>
+                                            <p><strong>推荐等级：</strong>100-120级</p>
+                                            <p><strong>核心地标：</strong>黄金树、艾尔登宝座</p>
+                                            <p><strong>标志性BOSS：</strong>恶兆王蒙葛特、黑剑玛利喀斯</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="map-card-name text-center py-3 text-elden-gold font-bold">王城罗德尔</div>
+                            </div>
+                        </div>
+                        <div class="map-card castle" data-category="castle">
+                            <div class="map-card-inner h-full">
+                                <div class="map-img-wrapper">
+                                    <img src="images/灰城.jpg" alt="灰城罗德尔" class="w-full h-full object-cover">
+                                    <div class="map-text-overlay">
+                                        <h3 class="text-2xl font-bold text-elden-gold mb-3">灰城罗德尔</h3>
+                                        <div class="text-sm space-y-1 content-text">
+                                            <p>被焚烧后的王城，蒙葛特战败后的破败之地</p>
+                                            <p><strong>推荐等级：</strong>110-130级</p>
+                                            <p><strong>核心地标：</strong>焚烧后的黄金树、王城废墟</p>
+                                            <p><strong>标志性BOSS：</strong>初始之王葛孚雷、“黑剑”玛利喀斯</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="map-card-name text-center py-3 text-elden-gold font-bold">灰城罗德尔</div>
+                            </div>
+                        </div>
+                        <div class="map-card castle" data-category="castle">
+                            <div class="map-card-inner h-full">
+                                <div class="map-img-wrapper">
+                                    <img src="images/圣树.jpg" alt="米凯拉的圣树" class="w-full h-full object-cover">
+                                    <div class="map-text-overlay">
+                                        <h3 class="text-2xl font-bold text-elden-gold mb-3">米凯拉的圣树</h3>
+                                        <div class="text-sm space-y-1 content-text">
+                                            <p>女武神为弟弟打造的第二棵黄金树</p>
+                                            <p><strong>推荐等级：</strong>120-150级</p>
+                                            <p><strong>核心地标：</strong>圣树分枝、仪典镇奥缇娜</p>
+                                            <p><strong>标志性BOSS：</strong>女武神玛莲妮亚、神皮使徒</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="map-card-name text-center py-3 text-elden-gold font-bold">米凯拉的圣树</div>
+                            </div>
+                        </div>
+
+                        <!-- 【地下分类】 -->
+                        <div class="map-card underground" data-category="underground">
+                            <div class="map-card-inner h-full">
+                                <div class="map-img-wrapper">
+                                    <img src="images/地下.jpg" alt="希芙拉河" class="w-full h-full object-cover">
+                                    <div class="map-text-overlay">
+                                        <h3 class="text-2xl font-bold text-elden-gold mb-3">希芙拉河</h3>
+                                        <div class="text-sm space-y-1 content-text">
+                                            <p>交界地地下的永恒之河，祖灵的栖息地</p>
+                                            <p><strong>推荐等级：</strong>40-70级</p>
+                                            <p><strong>核心地标：</strong>祖灵森林、希芙拉河神授塔</p>
+                                            <p><strong>标志性BOSS：</strong>祖灵之王、仿身泪滴</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="map-card-name text-center py-3 text-elden-gold font-bold">希芙拉河</div>
+                            </div>
+                        </div>
+                        <div class="map-card underground" data-category="underground">
+                            <div class="map-card-inner h-full">
+                                <div class="map-img-wrapper">
+                                    <img src="images/鲜血王朝.jpg" alt="鲜血王朝" class="w-full h-full object-cover">
+                                    <div class="map-text-overlay">
+                                        <h3 class="text-2xl font-bold text-elden-gold mb-3">鲜血王朝</h3>
+                                        <div class="text-sm space-y-1 content-text">
+                                            <p>蒙格的异端王朝，信奉鲜血献祭</p>
+                                            <p><strong>推荐等级：</strong>120-150级</p>
+                                            <p><strong>核心地标：</strong>蒙格温王朝、鲜血神授塔</p>
+                                            <p><strong>标志性BOSS：</strong>鲜血君王蒙格、鲜血贵族</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="map-card-name text-center py-3 text-elden-gold font-bold">鲜血王朝</div>
+                            </div>
+                        </div>
+                        <div class="map-card underground" data-category="underground">
+                            <div class="map-card-inner h-full">
+                                <div class="map-img-wrapper">
+                                    <img src="images/永恒之城.jpg" alt="永恒之城" class="w-full h-full object-cover">
+                                    <div class="map-text-overlay">
+                                        <h3 class="text-2xl font-bold text-elden-gold mb-3">永恒之城</h3>
+                                        <div class="text-sm space-y-1 content-text">
+                                            <p>崇拜暗月的古老文明，包含诺克史黛拉/诺克福兰</p>
+                                            <p><strong>推荐等级：</strong>60-80级</p>
+                                            <p><strong>核心地标：</strong>黑夜神域、暗月祭坛</p>
+                                            <p><strong>标志性BOSS：</strong>黑暗弃子艾丝缇、祖灵之王</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="map-card-name text-center py-3 text-elden-gold font-bold">永恒之城</div>
+                            </div>
+                        </div>
+
+                        <!-- 【天空分类】 -->
+                        <div class="map-card sky" data-category="sky">
+                            <div class="map-card-inner h-full">
+                                <div class="map-img-wrapper">
+                                    <img src="images/天空.jpg" alt="法姆·亚兹拉" class="w-full h-full object-cover">
+                                    <div class="map-text-overlay">
+                                        <h3 class="text-2xl font-bold text-elden-gold mb-3">法姆·亚兹拉</h3>
+                                        <div class="text-sm space-y-1 content-text">
+                                            <p>漂浮在天空的古龙之城，“龙王”普拉顿桑克斯的领地</p>
+                                            <p><strong>推荐等级：</strong>140-160级</p>
+                                            <p><strong>核心地标：</strong>龙王神殿、时空夹缝</p>
+                                            <p><strong>标志性BOSS：</strong>龙王普拉顿桑克斯、艾尔登之兽</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="map-card-name text-center py-3 text-elden-gold font-bold">法姆·亚兹拉</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 板块3：职业选择 -->
+            <section class="section-full flex items-center justify-center relative px-8 bg-elden-dark/80" data-section-id="3">
+                <div class="max-w-6xl w-full z-10">
+                    <h2 class="text-4xl font-bold text-elden-gold mb-8 text-shadow">初始职业</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-elden-gray/50 p-6 rounded-sm border border-elden-gold/20 hover:scale-105 transition-transform card-hover">
+                            <h3 class="text-xl mb-2">勇者</h3>
+                            <p class="content-text text-sm">力量型职业，擅长使用重型武器，拥有较高的生命值和耐力。</p>
+                        </div>
+                        <div class="bg-elden-gray/50 p-6 rounded-sm border border-elden-gold/20 hover:scale-105 transition-transform card-hover">
+                            <h3 class="text-xl mb-2">魔法师</h3>
+                            <p class="content-text text-sm">智力型职业，精通辉石魔法，能够远程攻击敌人但防御力较低。</p>
+                        </div>
+                        <div class="bg-elden-gray/50 p-6 rounded-sm border border-elden-gold/20 hover:scale-105 transition-transform card-hover">
+                            <h3 class="text-xl mb-2">盗贼</h3>
+                            <p class="content-text text-sm">敏捷型职业，擅长潜行和暴击，使用匕首和短弓进行快速攻击。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 板块4：游戏背景 -->
+            <section class="section-full flex items-center justify-center relative px-8" data-section-id="4">
+                <div class="w-full max-w-3xl h-full flex flex-col items-center justify-center text-center p-6 z-10">
+                    <h2 class="text-4xl font-bold mb-8">世界观</h2>
+                    <p class="animate-line-up content-text mb-4">
+                        黄金树的根源——艾尔登法环在拥戴永恒女王玛莉卡的交界地破碎了。
+                    </p>
+                    <p class="animate-line-up content-text mb-4">
+                        继承玛莉卡之血的孩子“半神们”手持艾尔登法环的碎片——大卢恩，<br>
+                        因其力量而发狂，扭曲，引发了破碎战争……
+                    </p>
+                    <p class="animate-line-up content-text mb-4">
+                        被无上意志所抛弃。
+                    </p>
+                    <p class="animate-line-up content-text mb-4">
+                        其后，赐福的指引来到了曾经双眸失去黄金赐福，被驱赶至交界地的褪色者身边。
+                    </p>
+                    <p class="animate-line-up content-text mb-4">
+                        失去赐福，无法瞑目的死者们啊。<br>
+                        遵循指引，前往雾之海那端的交界地，<br>
+                        觐见艾尔登法环吧。
+                    </p>
+                    <p class="animate-line-up content-text">
+                        然后，成为艾尔登之王吧。
+                    </p>
+                </div>
+            </section>
+
+            <!-- 板块5：玩家社区 -->
+            <section class="section-full flex items-center justify-center relative px-8 bg-elden-dark/80" data-section-id="5">
+                <div class="max-w-6xl w-full z-10">
+                    <h2 class="text-4xl font-bold text-elden-gold mb-8 text-shadow">玩家社区</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-elden-gray/50 p-6 rounded-sm border border-elden-gold/20 text-center card-hover">
+                            <i class="fa fa-comments text-elden-gold text-4xl mb-4"></i>
+                            <h3 class="text-xl mb-2">攻略讨论</h3>
+                            <p class="content-text text-sm">分享BOSS打法、装备搭配和路线规划</p>
+                        </div>
+                        <div class="bg-elden-gray/50 p-6 rounded-sm border border-elden-gold/20 text-center card-hover">
+                            <i class="fa fa-paint-brush text-elden-gold text-4xl mb-4"></i>
+                            <h3 class="text-xl mb-2">创意分享</h3>
+                            <p class="content-text text-sm">展示角色外观、捏脸数据和游戏截图</p>
+                        </div>
+                        <div class="bg-elden-gray/50 p-6 rounded-sm border border-elden-gold/20 text-center card-hover">
+                            <i class="fa fa-gamepad text-elden-gold text-4xl mb-4"></i>
+                            <h3 class="text-xl mb-2">联机合作</h3>
+                            <p class="content-text text-sm">寻找伙伴一同冒险，挑战强大的敌人</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 引入JS文件 -->
+    <script src="script.js"></script>
+</body>
+</html>
